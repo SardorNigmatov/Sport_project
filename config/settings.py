@@ -42,12 +42,13 @@ INSTALLED_APPS = [
 
     #internal
     'sport',
+    'account',
     
     #external
     'django',
     'rest_framework',
 ]
-
+AUTH_USER_MODEL = 'account.CustomUser'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
