@@ -14,3 +14,7 @@ urlpatterns = [
     path('update/<int:yangilik_id>/', UpdateYangilikView.as_view()),
     path('delete/<int:yangilik_id>/', DeleteYangilikView.as_view()),
 ]
+from .views import ListCoachViews
+
+urlpatterns = [
+    path('coach-all/', ListCoachViews.as_view(), name='coach_all')
