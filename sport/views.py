@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
-from .models import YangilikModels
-from .serializers import YangilikSerializer
+from .models import YangilikModels, Gyms
+from .serializers import YangilikSerializer, GymsSerializer, GymsCreateSerializer
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 from rest_framework.status import HTTP_201_CREATED
@@ -40,7 +40,6 @@ class CreatYangilikView(APIView):
 class UpdateYangilikView(APIView):
     def patch(self, request, *args, **kwargs):
         yangilik = get_object_or_404(YangilikModels, id=kwargs['yangilik_id'])
-
         serializer = YangilikSerializer(yangilik, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
@@ -53,8 +52,10 @@ class DeleteYangilikView(APIView):
         yangilik = get_object_or_404(YangilikModels, id=kwargs['yangilik_id'])
         yangilik.delete()
         return Response({'msg': 'deleted'})
+
+
 from rest_framework import generics
-from .serializer import CoachSerializer
+from .serializers import CoachSerializer
 from .models import CoachModel
 from rest_framework.permissions import IsAuthenticated
 # Create your views here.
@@ -76,7 +77,30 @@ class CoachUpdateViews(generics.UpdateAPIView):
 
 class CoachDeleteViews(generics.DestroyAPIView):
     queryset = CoachModel.objects.all()
-    serializer_class = CoaSerializer
+    serializer_class = CoachSerializer
     # permission_classes = (AdminPermission,)
-    
+
+
+class GymsListView(generics.ListAPIView):
+    queryset = Gyms.objects.all()
+    serializer_class = GymsSerializer
+
+
+class GymsDetailView(generics.RetrieveAPIView):
+    queryset = Gyms.objects.all()
+    serializer_class = GymsSerializer
+
+class GymsCreateView(generics.CreateAPIView):
+    queryset = Gyms.objects.all()
+    serializer_class = GymsCreateSerializer
+
+class GymsUpdateView(generics.UpdateAPIView):
+    queryset = Gyms.objects.all()
+    serializer_class = GymsSerializer
+
+class GymsDeleteView(generics.DestroyAPIView):
+    queryset = Gyms.objects.all()
+    serializer_class = GymsSerializer
+
+
 
