@@ -5,3 +5,5 @@ class CoachSerializer(ModelSerializer):
     class Meta:
         model = CoachModel
         fields = ('full_name','degree','image')
+        
+        
