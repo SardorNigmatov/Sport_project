@@ -13,7 +13,6 @@ import os
 from datetime import timedelta
 from pathlib import Path
 from dotenv import dotenv_values
-from django.contrib.staticfiles.handlers import StaticFilesHandler
 
 config = dotenv_values(".env")
 
