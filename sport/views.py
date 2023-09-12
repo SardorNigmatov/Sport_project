@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
-from .models import YangilikModels, Gyms
-from .serializers import YangilikSerializer, GymsSerializer, GymsCreateSerializer
+from .models import YangilikModels, Gyms , CoachModel
+from .serializers import YangilikSerializer, GymsSerializer, GymsCreateSerializer , CoachSerializer
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 from rest_framework.status import HTTP_201_CREATED
@@ -54,10 +54,6 @@ class DeleteYangilikView(APIView):
         return Response({'msg': 'deleted'})
 
 
-from rest_framework import generics
-from .serializers import CoachSerializer
-from .models import CoachModel
-from rest_framework.permissions import IsAuthenticated
 # Create your views here.
 
 class CoachListViews(generics.ListAPIView):
@@ -67,18 +63,18 @@ class CoachListViews(generics.ListAPIView):
 class CoachCreateViews(generics.CreateAPIView):
     queryset = CoachModel.objects.all()
     serializer_class = CoachSerializer
-    # permission_classes = (AutherUserPermissions,)
+    permission_classes = (IsAuthenticated,)
 
     
 class CoachUpdateViews(generics.UpdateAPIView):
     queryset = CoachModel.objects.all()
     serializer_class = CoachSerializer
-    # permission_classes = (AdminPermission,)
+    permission_classes = (IsAuthenticated,)
 
 class CoachDeleteViews(generics.DestroyAPIView):
     queryset = CoachModel.objects.all()
     serializer_class = CoachSerializer
-    # permission_classes = (AdminPermission,)
+    permission_classes = (IsAuthenticated,)
 
 
 class GymsListView(generics.ListAPIView):
