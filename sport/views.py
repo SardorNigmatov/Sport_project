@@ -67,18 +67,18 @@ class CoachListViews(generics.ListAPIView):
 class CoachCreateViews(generics.CreateAPIView):
     queryset = CoachModel.objects.all()
     serializer_class = CoachSerializer
-    # permission_classes = (AutherUserPermissions,)
+    permission_classes = (IsAuthenticated,)
 
     
 class CoachUpdateViews(generics.UpdateAPIView):
     queryset = CoachModel.objects.all()
     serializer_class = CoachSerializer
-    # permission_classes = (AdminPermission,)
+    permission_classes = (IsAuthenticated,)
 
 class CoachDeleteViews(generics.DestroyAPIView):
     queryset = CoachModel.objects.all()
     serializer_class = CoachSerializer
-    # permission_classes = (AdminPermission,)
+    permission_classes = (IsAuthenticated,)
 
 
 class GymsListView(generics.ListAPIView):
